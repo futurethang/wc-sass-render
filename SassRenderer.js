@@ -39,6 +39,7 @@ module.exports = class SassRenderer {
         importer: tildeImporter
       })
     ).css.toString();
+    console.log(result)
 
     return result.replace(/\\/g, "\\\\");
   }
