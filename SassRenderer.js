@@ -4,7 +4,7 @@ const util = require("util");
 const sass = require("node-sass");
 const tildeImporter = require("node-sass-tilde-importer");
 
-const renderSass = util.promisify(sass.renderSync);
+const renderSass = util.promisify(sass.render);
 const readFile = util.promisify(fs.readFile);
 const writeFile = util.promisify(fs.writeFile);
 
@@ -39,7 +39,6 @@ module.exports = class SassRenderer {
         importer: tildeImporter
       })
     ).css.toString();
-    console.log(result)
 
     return result.replace(/\\/g, "\\\\");
   }
@@ -62,7 +61,6 @@ module.exports = class SassRenderer {
         .slice(0, -1)
         .join(".")}${suffix}`;
     }
-    console.log("fart")
     return writeFile(output, newContent, "utf-8");
   }
 };
